@@ -1,0 +1,248 @@
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	margin: 0;
+	font-family: 'Lato', sans-serif;
+	background-image: linear-gradient(0deg, rgba(247, 247, 247, 1) 23.8%, rgba(252, 221, 221, 1) 92%);
+}
+
+.music-container {
+	position: relative;
+	z-index: 10;
+	display: flex;
+	margin: 100px 0 40px;
+	padding: 20px 30px;
+	background-color: #ffffff;
+	border-radius: 15px;
+	box-shadow: 0 20px 20px 0 rgba(252, 169, 169, 0.6);
+}
+
+.img-container {
+	position: relative;
+	width: 110px;
+}
+
+.img-container::after {
+	content: '';
+	position: absolute;
+	left: 50%;
+	bottom: 100%;
+	width: 15px;
+	height: 15px;
+	background-color: #ffffff;
+	border-radius: 50%;
+	transform: translate(-50%, 50%);
+}
+
+.img-container img {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: inherit;
+	height: 110px;
+	border-radius: 50%;
+	object-fit: cover;
+	animation: rotate 4s linear infinite;
+	animation-play-state: paused;
+}
+
+.music-container.play .img-container img {
+	animation-play-state: running;
+}
+
+.navigation {
+	z-index: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.action-btn {
+	margin: 0 20px;
+	padding: 10px;
+	font-size: 20px;
+	color: #dfdbdf;
+	background-color: #ffffff;
+	border: 0;
+	cursor: pointer;
+}
+
+.action-btn.action-btn-big {
+	font-size: 30px;
+	color: #cdc2d0;
+	transform: scale(1);
+	transition: transform 0.2s ease-in-out;
+}
+
+.action-btn.action-btn-big:hover {
+	transform: scale(1.2);
+}
+
+.action-btn:focus {
+	outline: 0;
+}
+
+.action-btn.active {
+	color: rgba(252, 169, 169, 0.9);
+}
+
+.music-info {
+	position: absolute;
+	top: 0;
+	left: 20px;
+	z-index: 0;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	width: calc(100% - 40px);
+	padding: 10px 10px 10px 150px;
+	background-color: rgba(255, 255, 255, 0.5);
+	border-radius: 15px 15px 0 0;
+	opacity: 0;
+	transform: translateY(0%);
+	transition: transform 0.3s ease-in, transform 0.3s ease-in;
+}
+
+.music-info h4 {
+	margin: 0;
+	color: #cdc2d0;
+}
+
+.timestamp {
+	font-weight: bold;
+	color: rgba(252, 169, 169, 0.9);
+}
+
+.music-info.show {
+	opacity: 1;
+	transform: translateY(-100%);
+}
+
+.progress-container {
+	width: 100%;
+	height: 4px;
+	margin: 10px 0;
+	background-color: #ffffff;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.progress {
+	width: 0%;
+	height: 100%;
+	background-color: #fe8daa;
+	border-radius: 5px;
+	transition: width 0.1s linear;
+}
+
+.order-container {
+	width: 460px;
+	margin: 0;
+	padding: 10px 20px;
+	background-color: #ffffff;
+	border-radius: 5px;
+	box-shadow: 0 5px 5px 0 rgba(252, 169, 169, 0.6);
+}
+
+.order-container[open] i {
+	top: 15px;
+	transform: rotate(-180deg);
+	transition: transform 0.2s ease-in;
+}
+
+.order-container summary {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+
+.order-container summary::-webkit-details-marker {
+	display: none;
+}
+
+.order-container summary:focus {
+	outline: none;
+}
+
+.order-container i {
+	position: absolute;
+	top: 0;
+	right: 10px;
+	z-index: 1;
+	color: #cdc2d0;
+	transition: transform 0.2s ease-in;
+}
+
+.order-container h2 {
+	margin: 8px 0;
+	text-align: center;
+}
+
+.order-container ul {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
+.order-container ul li {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	height: 50px;
+	padding: 20px;
+	cursor: pointer;
+}
+
+.order-container ul li:hover,
+.order-container ul li:focus {
+	background-color: rgba(240, 240, 176, 0.7);
+	transition: background 0.2s ease-in-out;
+}
+
+.order-container ul li:not(:only-child):not(:last-child) {
+	border-bottom: 3px solid #cdc2d0;
+}
+
+.order-container .prev {
+	opacity: 0.5;
+}
+
+.order-container .current {
+	background-color: rgba(240, 240, 176, 0.5);
+}
+
+.order-container img {
+	width: 30px;
+	height: 30px;
+	margin-right: 15px;
+	object-fit: cover;
+	border-radius: 5px;
+}
+
+.order-container h5 {
+	margin-left: auto;
+	font-size: 0.8rem;
+	color: #cdc2d0;
+}
+
+@keyframes rotate {
+	from {
+		transform: rotate(0deg);
+	}
+
+	to {
+		transform: rotate(360deg);
+	}
+}
